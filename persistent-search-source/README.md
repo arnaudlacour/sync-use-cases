@@ -14,6 +14,7 @@ This docker-compose stack demonstrates how a PingDataSync server may be configur
 
 ### Archictecture
 
+```
                         +----------------------------------------------------------------------------+
                         |                          |     PingDataSync     |                          |
                         |                          +----------------------+                          |
@@ -35,7 +36,7 @@ This docker-compose stack demonstrates how a PingDataSync server may be configur
                         |                                  +->+ mappings...|                         |
                         |                                     +------------+                         |
                         +----------------------------------------------------------------------------+
-
+```
 In this setup, the LDAP sync source issues a persistent search request to the LDAP Server.
 Once processed, the request will remain open until the server terminate the request or something unexpected interrupts it.
 A new request will be issued to the LDAP Server in either case.
