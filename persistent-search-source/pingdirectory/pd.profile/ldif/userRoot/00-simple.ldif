@@ -1,8 +1,10 @@
 dn: ${USER_BASE_DN}
-objectClass: organizationalUnit
+objectClass: ${BASE_CLASS}
+${BASE_ATTRIBUTE}: ${BASE_VALUE}
 
 dn: ou=people,${USER_BASE_DN}
 objectClass: organizationalUnit
+ou: people
 
 dn: cn=user.0,ou=people,${USER_BASE_DN}
 objectClass: person
