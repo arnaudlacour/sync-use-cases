@@ -1,0 +1,56 @@
+dn: ${USER_BASE_DN}
+objectClass: organizationalUnit
+
+dn: ou=people,${USER_BASE_DN}
+objectClass: organizationalUnit
+
+dn: cn=user.0,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.1,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.2,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.3,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.4,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.5,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.6,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.7,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.8,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+
+dn: cn=user.9,ou=people,${USER_BASE_DN}
+objectClass: person
+sn: test
+description: original description
+

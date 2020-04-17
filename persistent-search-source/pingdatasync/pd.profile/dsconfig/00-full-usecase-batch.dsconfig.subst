@@ -1,0 +1,36 @@
+dsconfig create-external-server \
+    --server-name source-ldap-server  \
+    --type ldap  \
+    --set server-host-name:pingdirectory  \
+    --set server-port:${LDAP_PORT} \
+    --set bind-dn:${ROOT_USER_DN}  \
+    --set password:${PING_IDENTITY_PASSWORD}
+
+dsconfig create-sync-source \
+    --source-name persistent-search-from-source-ldap  \
+    --type third-party  \
+    --set 'description:This source issues persistent search requests to the external server specified as an argument to synchronized entries as they change.\n\The only other required argument is the base DN.'  \
+    --set extension-class:com.pingidentity.sync.source.LDAPPersistentSearch  \
+    --set extension-argument:external-server=source-ldap-server  \
+    --set extension-argument:base-dn=ou=People,${USER_BASE_DN}
+
+dsconfig create-sync-destination \
+    --destination-name dev-null  \
+    --type third-party  \
+    --set extension-class:com.pingidentity.sync.destination.DevNull
+
+dsconfig create-sync-pipe \
+    --pipe-name from-persistent-search-source_to_dev-null  \
+    --set sync-source:persistent-search-from-source-ldap  \
+    --set sync-destination:dev-null  \
+    --set "change-detection-polling-interval:1 s"  \
+    --set num-worker-threads:1
+
+dsconfig create-sync-class \
+    --pipe-name from-persistent-search-source_to_dev-null  \
+    --class-name anything  \
+    --set auto-mapped-source-attribute:-all-
+
+dsconfig set-sync-pipe-prop \
+    --pipe-name from-persistent-search-source_to_dev-null  \
+    --set started:true

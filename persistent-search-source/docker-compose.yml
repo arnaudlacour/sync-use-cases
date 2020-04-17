@@ -1,0 +1,76 @@
+version: "2"
+# The server profiles used in this example are intended for use with edge versions of the product image only.
+
+services:
+  pingdirectory:
+    image: pingidentity/pingdirectory:edge
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/arnaudlacour/sync-use-cases.git
+      - SERVER_PROFILE_PATH=persistent-search-source/pingdirectory
+      - ORCHESTRATION_TYPE=COMPOSE
+      - COMPOSE_SERVICE_NAME=persistent-search-source_pingdirectory
+      - PING_CONTAINER_PRIVILEGED=false
+      - LDAP_PORT=1389
+      - LDAPS_PORT=1636
+      - HTTPS_PORT=1443
+      - JMX_PORT=1689
+    env_file:
+      - ~/.pingidentity/devops
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    networks:
+      - pingnet
+
+  pingdatasync:
+    image: pingidentity/pingdatasync:edge
+    environment:
+      #- VERBOSE=true
+      - SERVER_PROFILE_URL=https://github.com/arnaudlacour/sync-use-cases.git
+      - SERVER_PROFILE_PATH=persistent-search-source/pingdatasync
+      - PING_CONTAINER_PRIVILEGED=false
+      - LDAP_PORT=1389
+      - LDAPS_PORT=1636
+      - HTTPS_PORT=1443
+      - JMX_PORT=1689
+    env_file:
+      - ~/.pingidentity/devops
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    networks:
+      - pingnet
+
+  pingdataconsole:
+    image: pingidentity/pingdataconsole:edge
+    command: wait-for pingdirectory:1389 -- start-server
+    environment:
+      - PING_CONTAINER_PRIVILEGED=false
+    env_file:
+      - ~/.pingidentity/devops
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    mem_limit: 1g
+    memswap_limit: 1g
+    mem_swappiness: 0
+    ports:
+      - "8443:8443"
+      - "5005:5005"
+    networks:
+      - pingnet
+
+networks:
+  pingnet:
