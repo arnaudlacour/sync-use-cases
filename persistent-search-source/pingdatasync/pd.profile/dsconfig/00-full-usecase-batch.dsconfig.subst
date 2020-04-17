@@ -3,7 +3,7 @@ dsconfig create-external-server \
     --type ldap  \
     --set server-host-name:pingdirectory  \
     --set server-port:${LDAP_PORT} \
-    --set bind-dn:${ROOT_USER_DN}  \
+    --set bind-dn:cn=sync,${USER_BASE_DN}  \
     --set password:${PING_IDENTITY_PASSWORD}
 
 dsconfig create-sync-source \

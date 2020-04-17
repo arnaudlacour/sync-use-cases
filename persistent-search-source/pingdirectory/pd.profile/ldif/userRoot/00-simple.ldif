@@ -2,7 +2,15 @@ dn: ${USER_BASE_DN}
 objectClass: ${BASE_CLASS}
 ${BASE_ATTRIBUTE}: ${BASE_VALUE}
 
+dn: cn=sync,${USER_BASE_DN}
+objectClass: person
+cn: sync
+sn: test
+userPassword: ${PING_IDENTITY_PASSWORD}
+
 dn: ou=people,${USER_BASE_DN}
+aci: (targetattr!="userPassword")(version 3.0; acl "sync user access"; allow(search,read) userdn="ldap:///cn=sync,${USER_BASE_DN}";)
+aci: (targetcontrol="2.16.840.1.113730.3.4.3")(version 3.0; acl "sync can use persistent search"; allow(search,read) userdn="ldap:///cn=sync,${USER_BASE_DN}";)
 objectClass: organizationalUnit
 ou: people
 
