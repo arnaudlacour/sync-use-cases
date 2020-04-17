@@ -51,7 +51,6 @@ services:
 
   pingdataconsole:
     image: pingidentity/pingdataconsole:edge
-    command: wait-for pingdirectory:1389 -- start-server
     environment:
       - PING_CONTAINER_PRIVILEGED=false
     env_file:

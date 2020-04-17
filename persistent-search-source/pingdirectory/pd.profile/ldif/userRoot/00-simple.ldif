@@ -7,50 +7,60 @@ objectClass: organizationalUnit
 dn: cn=user.0,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.0
 description: original description
 
 dn: cn=user.1,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.1
 description: original description
 
 dn: cn=user.2,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.2
 description: original description
 
 dn: cn=user.3,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.3
 description: original description
 
 dn: cn=user.4,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.4
 description: original description
 
 dn: cn=user.5,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.5
 description: original description
 
 dn: cn=user.6,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.6
 description: original description
 
 dn: cn=user.7,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.7
 description: original description
 
 dn: cn=user.8,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.8
 description: original description
 
 dn: cn=user.9,ou=people,${USER_BASE_DN}
 objectClass: person
 sn: test
+cn: user.9
 description: original description
 
